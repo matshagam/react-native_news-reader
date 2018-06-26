@@ -15,7 +15,6 @@ export default class Header extends Component {
 
 const styles = StyleSheet.create({
   header: {
-    marginTop: 20,
     height: 44,
     justifyContent: "center"
   },
