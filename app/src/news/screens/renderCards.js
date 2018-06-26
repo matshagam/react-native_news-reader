@@ -244,6 +244,7 @@ export default class RenderCards extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: 20,
     backgroundColor: "#f5f5f5",
     flex: 1
   }
