@@ -19,20 +19,20 @@ import Footer from "../components/Footer";
 export default class RenderCards extends Component {
   static navigationOptions = {
     header: null
-    // headerTitle: "НОВОСТИ",
-    // headerTitleStyle: {
-    //   position: "absolute",
-    //   left: 0,
-    //   fontSize: 19,
-    //   fontWeight: "bold"
-    // },
-    // headerTruncatedBackTitle: `НОВОСТИ`,
-    // headerStyle: {
-    //   elevation: 0,
-    //   borderBottomWidth: 0,
-    //   borderBottomColor: "#fff",
-    //   backgroundColor: "#f5f5f5"
-    // }
+    /* headerTitle: "НОВОСТИ",
+    headerTitleStyle: {
+    position: "absolute",
+    left: 0,
+    fontSize: 19,
+    fontWeight: "bold"
+     },
+    headerTruncatedBackTitle: `НОВОСТИ`,
+    headerStyle: {
+       elevation: 0,
+       borderBottomWidth: 0,
+       borderBottomColor: "#fff",
+       backgroundColor: "#f5f5f5"
+     }*/
   };
 
   constructor(props) {
