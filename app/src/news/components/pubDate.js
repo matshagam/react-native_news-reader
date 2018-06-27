@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import { Text, StyleSheet } from 'react-native'
 import formatDate from 'date-fns/format'
 import ruLocale from 'date-fns/locale/ru'
