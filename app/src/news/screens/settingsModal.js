@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import { Text, View, StyleSheet, ScrollView, Modal } from 'react-native'
 import { Icon, CheckBox } from 'react-native-elements'
 
@@ -7,7 +7,7 @@ export default function SettingsModal(props) {
     <Modal
       animationType="slide"
       transparent={false}
-      visible={props.settings.modalVisible}
+      visible={props.modalVisible}
     >
       <View style={styles.modal}>
         <View style={styles.header}>
@@ -30,10 +30,10 @@ export default function SettingsModal(props) {
                   checkedIcon="md-checkbox"
                   uncheckedIcon="md-square-outline"
                   checkedColor="#c3c3c3"
-                  checked={props.settings.allDate}
+                  checked={props.allDate}
                   onPress={() => {
                     props.updatePostsState({
-                      allDate: !props.settings.allDate,
+                      allDate: !props.allDate,
                     })
                   }}
                 />
@@ -52,10 +52,10 @@ export default function SettingsModal(props) {
                   checkedIcon="md-checkbox"
                   uncheckedIcon="md-square-outline"
                   checkedColor="#c3c3c3"
-                  checked={props.settings.todayNews}
+                  checked={props.todayNews}
                   onPress={() => {
                     props.updatePostsState({
-                      todayNews: !props.settings.todayNews,
+                      todayNews: !props.todayNews,
                     })
                   }}
                 />
@@ -72,10 +72,10 @@ export default function SettingsModal(props) {
                   checkedIcon="md-checkbox"
                   uncheckedIcon="md-square-outline"
                   checkedColor="#c3c3c3"
-                  checked={props.settings.popularSorting}
+                  checked={props.popularSorting}
                   onPress={() => {
                     props.updatePostsState({
-                      popularSorting: !props.settings.popularSorting,
+                      popularSorting: !props.popularSorting,
                     })
                   }}
                 />
@@ -89,10 +89,10 @@ export default function SettingsModal(props) {
                   checkedIcon="md-checkbox"
                   uncheckedIcon="md-square-outline"
                   checkedColor="#c3c3c3"
-                  checked={props.settings.favoritesSorting}
+                  checked={props.favoritesSorting}
                   onPress={() => {
                     props.updatePostsState({
-                      favoritesSorting: !props.settings.favoritesSorting,
+                      favoritesSorting: !props.favoritesSorting,
                     })
                   }}
                 />
