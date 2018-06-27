@@ -1,23 +1,22 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import { View, TextInput, StyleSheet } from 'react-native'
 import { Icon } from 'react-native-elements'
 
 export default function SearchInput(props) {
-  return !props.searchInput.isHiddenSearch ? (
+  return !props.isHiddenSearch ? (
     <View style={styles.textInputContainer}>
       <TextInput
         onChangeText={text => props.handleKeySearch(text.toLowerCase())}
         style={styles.searchInput}
         placeholder="Начните вводить слово..."
-        value={props.searchInput.query}
+        value={props.query}
         selectionColor="grey"
         numberOfLines={1}
         maxLength={24}
         autoCorrect={false}
         autoFocus={true}
         onKeyPress={event =>
-          event.nativeEvent.key === 'Backspace' &&
-          props.searchInput.query.length === 2
+          event.nativeEvent.key === 'Backspace' && props.query.length === 2
             ? props.clearQuery()
             : null
         }
