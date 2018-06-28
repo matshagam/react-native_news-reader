@@ -2,117 +2,111 @@ import React from 'react'
 import { Text, View, StyleSheet, ScrollView, Modal } from 'react-native'
 import { Icon, CheckBox } from 'react-native-elements'
 
-export default function SettingsModal(props) {
-  return (
-    <Modal
-      animationType="slide"
-      transparent={false}
-      visible={props.modalVisible}
-    >
-      <View style={styles.modal}>
-        <View style={styles.header}>
-          <Text style={styles.headerH1}>
-            НАСТРОЙКИ <Text style={styles.headerH2}>новостной ленты</Text>
-          </Text>
-        </View>
-        <ScrollView>
-          <View>
-            <View style={styles.viewContainer}>
-              <Text style={styles.icon}>Поиск</Text>
-              <View style={styles.viewCheckBox}>
-                <Text style={styles.checkBoxText}>
-                  {`По всем дням\n(без галочки: только за сегодня)`}
-                </Text>
-                <CheckBox
-                  iconType="ionicon"
-                  iconRight
-                  containerStyle={styles.checkBox}
-                  checkedIcon="md-checkbox"
-                  uncheckedIcon="md-square-outline"
-                  checkedColor="#c3c3c3"
-                  checked={props.allDate}
-                  onPress={() => {
-                    props.updatePostsState({
-                      allDate: !props.allDate,
-                    })
-                  }}
-                />
-              </View>
-            </View>
-            <View style={styles.viewContainer}>
-              <Text style={styles.icon}>Календарь</Text>
-              <View style={styles.viewCheckBox}>
-                <Text style={styles.checkBoxText}>
-                  {`Все новости\n(без галочки: только за сегодня)`}
-                </Text>
-                <CheckBox
-                  iconType="ionicon"
-                  iconRight
-                  containerStyle={styles.checkBox}
-                  checkedIcon="md-checkbox"
-                  uncheckedIcon="md-square-outline"
-                  checkedColor="#c3c3c3"
-                  checked={props.todayNews}
-                  onPress={() => {
-                    props.updatePostsState({
-                      todayNews: !props.todayNews,
-                    })
-                  }}
-                />
-              </View>
-            </View>
-            <View style={styles.viewContainer}>
-              <Text style={styles.icon}>Сортировка</Text>
-              <View style={styles.viewCheckBox}>
-                <Text style={styles.checkBoxText}>Популярные новости</Text>
-                <CheckBox
-                  iconType="ionicon"
-                  iconRight
-                  containerStyle={styles.checkBox}
-                  checkedIcon="md-checkbox"
-                  uncheckedIcon="md-square-outline"
-                  checkedColor="#c3c3c3"
-                  checked={props.popularSorting}
-                  onPress={() => {
-                    props.updatePostsState({
-                      popularSorting: !props.popularSorting,
-                    })
-                  }}
-                />
-              </View>
-              <View style={styles.viewLastBox}>
-                <Text style={styles.checkBoxText}>Избранные новости</Text>
-                <CheckBox
-                  iconType="ionicon"
-                  iconRight
-                  containerStyle={styles.checkBox}
-                  checkedIcon="md-checkbox"
-                  uncheckedIcon="md-square-outline"
-                  checkedColor="#c3c3c3"
-                  checked={props.favoritesSorting}
-                  onPress={() => {
-                    props.updatePostsState({
-                      favoritesSorting: !props.favoritesSorting,
-                    })
-                  }}
-                />
-              </View>
-            </View>
-          </View>
-          <View style={styles.saveSettings}>
-            <Icon
-              iconStyle={styles.icon}
-              name="ios-checkmark-circle-outline"
-              type="ionicon"
-              size={45}
-              onPress={props.updateStateSettings}
-            />
-          </View>
-        </ScrollView>
+export const SettingsModal = props => (
+  <Modal animationType="slide" transparent={false} visible={props.modalVisible}>
+    <View style={styles.modal}>
+      <View style={styles.header}>
+        <Text style={styles.headerH1}>
+          НАСТРОЙКИ <Text style={styles.headerH2}>новостной ленты</Text>
+        </Text>
       </View>
-    </Modal>
-  )
-}
+      <ScrollView>
+        <View>
+          <View style={styles.viewContainer}>
+            <Text style={styles.icon}>Поиск</Text>
+            <View style={styles.viewCheckBox}>
+              <Text style={styles.checkBoxText}>
+                {`По всем дням\n(без галочки: только за сегодня)`}
+              </Text>
+              <CheckBox
+                iconType="ionicon"
+                iconRight
+                containerStyle={styles.checkBox}
+                checkedIcon="md-checkbox"
+                uncheckedIcon="md-square-outline"
+                checkedColor="#c3c3c3"
+                checked={props.allDate}
+                onPress={() => {
+                  props.updatePostsState({
+                    allDate: !props.allDate,
+                  })
+                }}
+              />
+            </View>
+          </View>
+          <View style={styles.viewContainer}>
+            <Text style={styles.icon}>Календарь</Text>
+            <View style={styles.viewCheckBox}>
+              <Text style={styles.checkBoxText}>
+                {`Все новости\n(без галочки: только за сегодня)`}
+              </Text>
+              <CheckBox
+                iconType="ionicon"
+                iconRight
+                containerStyle={styles.checkBox}
+                checkedIcon="md-checkbox"
+                uncheckedIcon="md-square-outline"
+                checkedColor="#c3c3c3"
+                checked={props.todayNews}
+                onPress={() => {
+                  props.updatePostsState({
+                    todayNews: !props.todayNews,
+                  })
+                }}
+              />
+            </View>
+          </View>
+          <View style={styles.viewContainer}>
+            <Text style={styles.icon}>Сортировка</Text>
+            <View style={styles.viewCheckBox}>
+              <Text style={styles.checkBoxText}>Популярные новости</Text>
+              <CheckBox
+                iconType="ionicon"
+                iconRight
+                containerStyle={styles.checkBox}
+                checkedIcon="md-checkbox"
+                uncheckedIcon="md-square-outline"
+                checkedColor="#c3c3c3"
+                checked={props.popularSorting}
+                onPress={() => {
+                  props.updatePostsState({
+                    popularSorting: !props.popularSorting,
+                  })
+                }}
+              />
+            </View>
+            <View style={styles.viewLastBox}>
+              <Text style={styles.checkBoxText}>Избранные новости</Text>
+              <CheckBox
+                iconType="ionicon"
+                iconRight
+                containerStyle={styles.checkBox}
+                checkedIcon="md-checkbox"
+                uncheckedIcon="md-square-outline"
+                checkedColor="#c3c3c3"
+                checked={props.favoritesSorting}
+                onPress={() => {
+                  props.updatePostsState({
+                    favoritesSorting: !props.favoritesSorting,
+                  })
+                }}
+              />
+            </View>
+          </View>
+        </View>
+        <View style={styles.saveSettings}>
+          <Icon
+            iconStyle={styles.icon}
+            name="ios-checkmark-circle-outline"
+            type="ionicon"
+            size={45}
+            onPress={props.updateStateSettings}
+          />
+        </View>
+      </ScrollView>
+    </View>
+  </Modal>
+)
 
 const styles = StyleSheet.create({
   modal: {
