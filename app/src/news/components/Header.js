@@ -1,13 +1,12 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Text, StyleSheet, View } from 'react-native'
 
-export default function Header(props) {
-  return !props.isHiddenHeaderFooter ? (
+export const Header = props =>
+  !props.isHiddenHeaderFooter ? (
     <View style={styles.header}>
       <Text style={styles.textHeader}>НОВОСТИ</Text>
     </View>
   ) : null
-}
 
 const styles = StyleSheet.create({
   header: {
