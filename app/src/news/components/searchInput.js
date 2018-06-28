@@ -2,8 +2,8 @@ import React from 'react'
 import { View, TextInput, StyleSheet } from 'react-native'
 import { Icon } from 'react-native-elements'
 
-export default function SearchInput(props) {
-  return !props.isHiddenSearch ? (
+export const SearchInput = props =>
+  !props.isHiddenSearch ? (
     <View style={styles.textInputContainer}>
       <TextInput
         onChangeText={text => props.handleKeySearch(text.toLowerCase())}
@@ -32,7 +32,6 @@ export default function SearchInput(props) {
       />
     </View>
   ) : null
-}
 
 const styles = StyleSheet.create({
   textInputContainer: {
