@@ -1,9 +1,9 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { Icon } from 'react-native-elements'
 
-export default function Footer(props) {
-  return !props.isHiddenHeaderFooter ? (
+export const Footer = props =>
+  !props.isHiddenHeaderFooter ? (
     <View style={styles.iconsContainer}>
       <Icon
         iconStyle={styles.icon}
@@ -39,7 +39,6 @@ export default function Footer(props) {
       />
     </View>
   ) : null
-}
 
 const styles = StyleSheet.create({
   icon: {
