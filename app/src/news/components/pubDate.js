@@ -3,13 +3,11 @@ import { Text, StyleSheet } from 'react-native'
 import formatDate from 'date-fns/format'
 import ruLocale from 'date-fns/locale/ru'
 
-export default function PubDate(props) {
-  return (
-    <Text style={styles.pubDate}>
-      {formatDate(props.pubDate, 'DD MMMM, YYYY', { locale: ruLocale })}
-    </Text>
-  )
-}
+export const PubDate = props => (
+  <Text style={styles.pubDate}>
+    {formatDate(props.pubDate, 'DD MMMM, YYYY', { locale: ruLocale })}
+  </Text>
+)
 
 const styles = StyleSheet.create({
   pubDate: {
