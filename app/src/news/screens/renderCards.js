@@ -11,10 +11,10 @@ import {
 } from '../config/helpers'
 
 import Card from '../container/Card'
-import SettingsModal from './settingsModal'
-import SearchInput from '../components/searchInput'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import { SettingsModal } from './settingsModal'
+import { SearchInput } from '../components/searchInput'
+import { Header } from '../components/Header'
+import { Footer } from '../components/Footer'
 
 export default class RenderCards extends Component {
   static navigationOptions = {
