@@ -1,12 +1,12 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import { Image, TouchableOpacity, View, Text, StyleSheet } from 'react-native'
 import { Icon } from 'react-native-elements'
 
 import { fetchDATA, MY_MAC_SERVER } from '../config/helpers'
 import LampButton from '../components/lampButton'
-import PubDate from '../components/pubDate'
+import { PubDate } from '../components/pubDate'
 
-export default class Card extends PureComponent {
+export default class Card extends React.Component {
   constructor(props) {
     super(props)
     this.state = {

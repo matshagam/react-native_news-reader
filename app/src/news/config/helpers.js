@@ -27,9 +27,15 @@ export const tagsStyles = {
   }
 };
 
+// TODO: подумать как использовать сохранение и чтение данных в памяти
+
 export function setAsync(key, value) {
   return AsyncStorage.setItem(key, JSON.stringify(value));
 }
+
+/* saveData = () => {
+  setAsync('dataSettings', this.state);
+}; */
 
 export function getAsync(key) {
   return AsyncStorage.getItem(key).then(data => JSON.parse(data));
@@ -39,12 +45,17 @@ export function clearAsync(key) {
   return AsyncStorage.removeItem(key);
 }
 
-export const MY_MAC_SERVER = `http://localhost:3000/posts`;
+/* loadData = () => {
+  getAsync('dataSettings').then(dataSettings => {
+ func what to do...
+  });
+  clearAsync('dataSettings');
+}; */
+
+export const MY_MAC_SERVER = `http://192.168.1.46:3000/posts`;
 
 export function fetchDATA(key) {
   return fetch(key).then(response => response.json());
 }
 
-export const filterData = [
-  "title, description, pubDate, image, count, id, link"
-];
+export const filterData = ["title, description, pubDate, image, count, id"];

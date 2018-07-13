@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react'
 
-import { ContentStack } from './app/src/news/newsStack';
+import { ContentStack } from './app/src/news/newsStack'
 
-export default class Einstein extends Component {
+export default class Einstein extends React.Component {
   render() {
-    return <ContentStack />;
+    return <ContentStack />
   }
 }

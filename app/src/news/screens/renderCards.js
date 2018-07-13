@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { FlatList, View, StyleSheet } from 'react-native'
 import formatDate from 'date-fns/format'
 
@@ -16,7 +16,7 @@ import { SearchInput } from '../components/searchInput'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 
-export default class RenderCards extends Component {
+export default class RenderCards extends React.Component {
   static navigationOptions = {
     header: null,
     /* headerTitle: "НОВОСТИ",
@@ -48,7 +48,7 @@ export default class RenderCards extends Component {
       modalVisible: false,
       allDate: false,
       today: formatDate(new Date(), 'YYYY-MM-DD'),
-      todayNews: false,
+      todayNews: true,
       popularSorting: false,
       favoritesSorting: false,
     }
@@ -128,10 +128,9 @@ export default class RenderCards extends Component {
   }
 
   updateStateSettings = () => {
-    const modalVisible = this.state.modalVisible
     this.setState(
       {
-        modalVisible: !modalVisible,
+        modalVisible: !this.state.modalVisible,
       },
       () => {
         this.getData()
@@ -140,15 +139,14 @@ export default class RenderCards extends Component {
   }
 
   scrollToTop = () => {
-    const isHiddenHeaderFooter = this.state.isHiddenHeaderFooter
     this.refs.listRef.scrollToOffset({
       x: 0,
       y: 0,
       animated: true,
     })
-    !isHiddenHeaderFooter
+    !this.state.isHiddenHeaderFooter
       ? this.setState({
-          isHiddenHeaderFooter: !isHiddenHeaderFooter,
+          isHiddenHeaderFooter: !this.state.isHiddenHeaderFooter,
         })
       : null
   }
@@ -189,6 +187,16 @@ export default class RenderCards extends Component {
         page: this.state.page + 1,
       },
       () => this.getData(),
+    )
+  }
+
+  ListEmptyComponent = () => {
+    return (
+      <View>
+        <Text>
+          На сегодня новостей нет. Вы можете изменить в настройках дату.
+        </Text>
+      </View>
     )
   }
 
@@ -234,6 +242,7 @@ export default class RenderCards extends Component {
           }
           onEndReached={this.onEndReached}
           onEndReachedThreshold={0.5}
+          ListEmptyComponent={ListEmptyComponent}
         />
         <SettingsModal
           modalVisible={modalVisible}
