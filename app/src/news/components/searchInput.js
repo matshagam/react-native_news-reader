@@ -1,6 +1,6 @@
-import React from 'react'
-import { View, TextInput, StyleSheet } from 'react-native'
-import { Icon } from 'react-native-elements'
+import React from 'react';
+import { View, TextInput, StyleSheet } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 export const SearchInput = props =>
   !props.isHiddenSearch ? (
@@ -21,23 +21,21 @@ export const SearchInput = props =>
             : null
         }
       />
-      <Icon
-        containerStyle={styles.iconSearchContainer}
-        iconStyle={styles.icon}
+      <Ionicons
+        style={styles.icon}
         size={20}
         underlayColor="transparent"
-        type="ionicon"
         name="ios-close-circle-outline"
         onPress={props.clearQuery}
       />
     </View>
-  ) : null
+  ) : null;
 
 const styles = StyleSheet.create({
   textInputContainer: {
     height: 46,
     justifyContent: 'center',
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#f5f5f5'
   },
   searchInput: {
     fontSize: 16,
@@ -48,19 +46,19 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 50,
     borderBottomRightRadius: 50,
     borderBottomLeftRadius: 50,
-    backgroundColor: '#eaeaea',
+    backgroundColor: '#eaeaea'
   },
   iconSearchContainer: {
     top: 13,
     right: 16,
-    position: 'absolute',
+    position: 'absolute'
   },
   textInputContainer: {
     height: 46,
     justifyContent: 'center',
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#f5f5f5'
   },
   icon: {
-    color: 'rgba(128, 128, 128, 0.4)',
-  },
-})
+    color: 'rgba(128, 128, 128, 0.4)'
+  }
+});

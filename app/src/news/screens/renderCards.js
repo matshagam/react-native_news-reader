@@ -1,24 +1,24 @@
-import React from 'react'
-import { FlatList, View, StyleSheet } from 'react-native'
-import formatDate from 'date-fns/format'
+import React from 'react';
+import { FlatList, View, StyleSheet } from 'react-native';
+import formatDate from 'date-fns/format';
 
 import {
   setAsync,
   getAsync,
   MY_MAC_SERVER,
   fetchDATA,
-  filterData,
-} from '../config/helpers'
+  filterData
+} from '../config/helpers';
 
-import Card from '../container/Card'
-import { SettingsModal } from './settingsModal'
-import { SearchInput } from '../components/searchInput'
-import { Header } from '../components/Header'
-import { Footer } from '../components/Footer'
+import Card from '../container/Card';
+import { SettingsModal } from './settingsModal';
+import { SearchInput } from '../components/searchInput';
+import { Header } from '../components/Header';
+import { Footer } from '../components/Footer';
 
 export default class RenderCards extends React.Component {
   static navigationOptions = {
-    header: null,
+    header: null
     /* headerTitle: "НОВОСТИ",
     headerTitleStyle: {
       position: "absolute",
@@ -33,10 +33,10 @@ export default class RenderCards extends React.Component {
       borderBottomColor: "#fff",
       backgroundColor: "#f5f5f5"
     } */
-  }
+  };
 
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       news: [],
@@ -50,43 +50,43 @@ export default class RenderCards extends React.Component {
       today: formatDate(new Date(), 'YYYY-MM-DD'),
       todayNews: true,
       popularSorting: false,
-      favoritesSorting: false,
-    }
-    this.updatePostsState = this.updatePostsState.bind(this)
-    this.handleKeySearch = this.handleKeySearch.bind(this)
+      favoritesSorting: false
+    };
+    this.updatePostsState = this.updatePostsState.bind(this);
+    this.handleKeySearch = this.handleKeySearch.bind(this);
   }
 
   componentDidMount() {
-    this.getData()
+    this.getData();
   }
 
   getData = () => {
-    console.log('get data...')
+    console.log('get data...');
 
-    const { page, query, news, isHiddenSearch, today, todayNews } = this.state
+    const { page, query, news, isHiddenSearch, today, todayNews } = this.state;
     this.setState({
-      loading: true,
-    })
+      loading: true
+    });
 
     if (isHiddenSearch && query === '') {
       fetchDATA(
         !todayNews
           ? `${MY_MAC_SERVER}?_limit=3&_page=${page}&_sort=pubDate&_order=desc`
-          : `${MY_MAC_SERVER}?_limit=3&_page=${page}&pubDate=${today}`,
+          : `${MY_MAC_SERVER}?_limit=3&_page=${page}&pubDate=${today}`
       )
         .then(res => res.map(filterData => filterData))
         .then(data => {
           this.setState({
             news: page === 1 ? data : [...news, ...data],
-            loading: false,
-          })
+            loading: false
+          });
           console.log(
             data.length > 3
               ? `ПРЕВЫШЕН _limit: ${data.length} > ` + '3'
-              : 'В лимите...',
-          )
-          if (!todayNews) setAsync('prevStateNews', news)
-        })
+              : 'В лимите...'
+          );
+          if (!todayNews) setAsync('prevStateNews', news);
+        });
     }
 
     if (!isHiddenSearch && query !== '') {
@@ -96,114 +96,104 @@ export default class RenderCards extends React.Component {
           this.setState({
             news: data,
             loading: false,
-            page: 1,
-          })
-        })
+            page: 1
+          });
+        });
     }
 
     if (!isHiddenSearch && query === '') {
-      console.log('load data from storage... ')
+      console.log('load data from storage... ');
 
       getAsync('prevStateNews').then(data => {
         this.setState({
-          news: data === news ? news : data,
-        })
-      })
+          news: data === news ? news : data
+        });
+      });
     }
-  }
+  };
 
   clearQuery = () => {
     this.setState(
       {
-        query: '',
+        query: ''
       },
       () => {
-        this.getData()
-      },
-    )
-  }
+        this.getData();
+      }
+    );
+  };
 
   updatePostsState(data) {
-    this.setState(data)
+    this.setState(data);
   }
 
   updateStateSettings = () => {
     this.setState(
       {
-        modalVisible: !this.state.modalVisible,
+        modalVisible: !this.state.modalVisible
       },
       () => {
-        this.getData()
-      },
-    )
-  }
+        this.getData();
+      }
+    );
+  };
 
   scrollToTop = () => {
     this.refs.listRef.scrollToOffset({
       x: 0,
       y: 0,
-      animated: true,
-    })
+      animated: true
+    });
     !this.state.isHiddenHeaderFooter
       ? this.setState({
-          isHiddenHeaderFooter: !this.state.isHiddenHeaderFooter,
+          isHiddenHeaderFooter: !this.state.isHiddenHeaderFooter
         })
-      : null
-  }
+      : null;
+  };
 
   handleKeySearch(text) {
-    const query = this.state.query.length
+    const query = this.state.query.length;
 
     this.setState(
       {
-        query: text,
+        query: text
       },
       () => {
-        query >= 3 ? this.getData() : null
-      },
-    )
+        query >= 3 ? this.getData() : null;
+      }
+    );
   }
 
   scrollEvent(event) {
-    const { isHiddenHeaderFooter, isHiddenSearch } = this.state
-    const scrollLength = event.nativeEvent.contentOffset.y
+    const { isHiddenHeaderFooter, isHiddenSearch } = this.state;
+    const scrollLength = event.nativeEvent.contentOffset.y;
 
     scrollLength > 100 && !isHiddenSearch
       ? this.setState({
-          isHiddenSearch: !isHiddenSearch,
+          isHiddenSearch: !isHiddenSearch
         })
-      : null
+      : null;
 
     scrollLength > 44 && !isHiddenHeaderFooter
       ? this.setState({
-          isHiddenHeaderFooter: !isHiddenHeaderFooter,
+          isHiddenHeaderFooter: !isHiddenHeaderFooter
         })
-      : null
+      : null;
   }
 
   onEndReached = () => {
     this.setState(
       {
-        page: this.state.page + 1,
+        page: this.state.page + 1
       },
-      () => this.getData(),
-    )
-  }
-
-  ListEmptyComponent = () => {
-    return (
-      <View>
-        <Text>
-          На сегодня новостей нет. Вы можете изменить в настройках дату.
-        </Text>
-      </View>
-    )
-  }
+      () => this.getData()
+    );
+  };
 
   renderItem = ({ item }) => {
-    const { navigation } = this.props
-    return <Card data={item} navigation={navigation} />
-  }
+    const { navigation } = this.props;
+    return <Card data={item} navigation={navigation} />;
+  };
 
   render() {
     const {
@@ -215,8 +205,8 @@ export default class RenderCards extends React.Component {
       allDate,
       todayNews,
       popularSorting,
-      favoritesSorting,
-    } = this.state
+      favoritesSorting
+    } = this.state;
 
     return (
       <View style={styles.container}>
@@ -233,16 +223,15 @@ export default class RenderCards extends React.Component {
           keyExtractor={(item, index) => index.toString()}
           ref="listRef"
           onMomentumScrollBegin={event => {
-            this.scrollEvent(event)
+            this.scrollEvent(event);
           }}
           onMomentumScrollEnd={() =>
             this.setState({
-              isHiddenHeaderFooter: !isHiddenHeaderFooter,
+              isHiddenHeaderFooter: !isHiddenHeaderFooter
             })
           }
           onEndReached={this.onEndReached}
           onEndReachedThreshold={0.5}
-          ListEmptyComponent={ListEmptyComponent}
         />
         <SettingsModal
           modalVisible={modalVisible}
@@ -261,7 +250,7 @@ export default class RenderCards extends React.Component {
           scrollToTop={this.scrollToTop}
         />
       </View>
-    )
+    );
   }
 }
 
@@ -269,6 +258,6 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 20,
     backgroundColor: '#f5f5f5',
-    flex: 1,
-  },
-})
+    flex: 1
+  }
+});

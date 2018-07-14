@@ -1,42 +1,42 @@
-import React from 'react'
-import { Image, TouchableOpacity, View, Text, StyleSheet } from 'react-native'
-import { Icon } from 'react-native-elements'
+import React from 'react';
+import { Image, TouchableOpacity, View, Text, StyleSheet } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
-import { fetchDATA, MY_MAC_SERVER } from '../config/helpers'
-import LampButton from '../components/lampButton'
-import { PubDate } from '../components/pubDate'
+import { fetchDATA, MY_MAC_SERVER } from '../config/helpers';
+import LampButton from '../components/lampButton';
+import { PubDate } from '../components/pubDate';
 
 export default class Card extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       count: 0,
       read: false,
-      pressed: false,
-    }
-    this.updateCardState = this.updateCardState.bind(this)
+      pressed: false
+    };
+    this.updateCardState = this.updateCardState.bind(this);
   }
 
   toContent = () => {
-    const { navigate } = this.props.navigation
-    const { id } = this.props.data
+    const { navigate } = this.props.navigation;
+    const { id } = this.props.data;
 
     fetchDATA(MY_MAC_SERVER + `/${id}`).then(data => {
       navigate('Content', {
-        content: data.content,
-      })
+        content: data.content
+      });
       this.setState({
-        read: true,
-      })
-    })
-  }
+        read: true
+      });
+    });
+  };
 
   updateCardState(data) {
-    this.setState(data)
+    this.setState(data);
   }
 
   render() {
-    const { pubDate, description, title, image, count } = this.props.data
+    const { pubDate, description, title, image, count } = this.props.data;
 
     return (
       <View
@@ -73,73 +73,69 @@ export default class Card extends React.Component {
               style={styles.contentButton}
               onPress={() => this.toContent()}
             >
-              <Icon
-                iconStyle={styles.icon}
-                type="ionicon"
-                name="ios-arrow-forward-outline"
-              />
+              <Ionicons style={styles.icon} name="ios-arrow-forward-outline" />
             </TouchableOpacity>
           </View>
         </View>
       </View>
-    )
+    );
   }
 }
 
 const styles = StyleSheet.create({
   card: {
     marginBottom: 8,
-    backgroundColor: '#fff',
+    backgroundColor: '#fff'
   },
   logoHeader: {
     padding: 16,
     paddingTop: 8,
-    paddingBottom: 8,
+    paddingBottom: 8
   },
   logo: {
     height: 30,
     width: 60,
-    resizeMode: 'contain',
+    resizeMode: 'contain'
   },
   imageBody: {
-    paddingBottom: 8,
+    paddingBottom: 8
   },
   image: {
     height: 200,
     width: '100%',
-    flex: 1,
+    flex: 1
   },
   titleBody: {
     padding: 16,
     paddingBottom: 8,
-    paddingTop: 0,
+    paddingTop: 0
   },
   title: {
     fontSize: 19,
-    fontWeight: '600',
+    fontWeight: '600'
   },
   descriptionBody: {
     padding: 16,
     paddingBottom: 8,
-    paddingTop: 8,
+    paddingTop: 8
   },
   description: {
-    fontSize: 16,
+    fontSize: 16
   },
   buttonBody: {
     paddingHorizontal: 16,
     paddingBottom: 8,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    flex: 1,
+    flex: 1
   },
   contentButton: {
     width: 150,
     height: 50,
     justifyContent: 'center',
-    alignItems: 'flex-end',
+    alignItems: 'flex-end'
   },
   icon: {
-    color: 'rgba(128, 128, 128, 0.4)',
-  },
-})
+    color: 'rgba(128, 128, 128, 0.4)'
+  }
+});

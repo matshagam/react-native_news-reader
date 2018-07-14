@@ -1,12 +1,12 @@
-import React from "react";
-import renderer from "react-test-renderer";
+import React from 'react';
+import renderer from 'react-test-renderer';
 
-import { YellowBox } from "react-native";
-YellowBox.ignoreWarnings(["Warning: ..."]);
+import { YellowBox } from 'react-native';
+YellowBox.ignoreWarnings(['Warning: ...']);
 
-import Einstein from "./App";
+import Einstein from './App';
 
-it("renders without crashing", () => {
+it('renders without crashing', () => {
   const rendered = renderer.create(<Einstein />).toJSON();
   expect(rendered).toBeTruthy();
 });

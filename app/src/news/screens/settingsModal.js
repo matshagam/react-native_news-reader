@@ -1,6 +1,7 @@
-import React from 'react'
-import { Text, View, StyleSheet, ScrollView, Modal } from 'react-native'
-import { Icon, CheckBox } from 'react-native-elements'
+import React from 'react';
+import { Text, View, StyleSheet, ScrollView, Modal } from 'react-native';
+import { CheckBox } from 'react-native-elements';
+import { Ionicons } from '@expo/vector-icons';
 
 export const SettingsModal = props => (
   <Modal animationType="slide" transparent={false} visible={props.modalVisible}>
@@ -28,8 +29,8 @@ export const SettingsModal = props => (
                 checked={props.allDate}
                 onPress={() => {
                   props.updatePostsState({
-                    allDate: !props.allDate,
-                  })
+                    allDate: !props.allDate
+                  });
                 }}
               />
             </View>
@@ -50,8 +51,8 @@ export const SettingsModal = props => (
                 checked={props.todayNews}
                 onPress={() => {
                   props.updatePostsState({
-                    todayNews: !props.todayNews,
-                  })
+                    todayNews: !props.todayNews
+                  });
                 }}
               />
             </View>
@@ -70,8 +71,8 @@ export const SettingsModal = props => (
                 checked={props.popularSorting}
                 onPress={() => {
                   props.updatePostsState({
-                    popularSorting: !props.popularSorting,
-                  })
+                    popularSorting: !props.popularSorting
+                  });
                 }}
               />
             </View>
@@ -87,18 +88,17 @@ export const SettingsModal = props => (
                 checked={props.favoritesSorting}
                 onPress={() => {
                   props.updatePostsState({
-                    favoritesSorting: !props.favoritesSorting,
-                  })
+                    favoritesSorting: !props.favoritesSorting
+                  });
                 }}
               />
             </View>
           </View>
         </View>
         <View style={styles.saveSettings}>
-          <Icon
-            iconStyle={styles.icon}
+          <Ionicons
+            style={styles.icon}
             name="ios-checkmark-circle-outline"
-            type="ionicon"
             size={45}
             onPress={props.updateStateSettings}
           />
@@ -106,36 +106,36 @@ export const SettingsModal = props => (
       </ScrollView>
     </View>
   </Modal>
-)
+);
 
 const styles = StyleSheet.create({
   modal: {
     backgroundColor: '#fff',
     height: '100%',
-    top: 22,
+    top: 22
   },
   header: {
     height: 44,
     justifyContent: 'center',
-    left: 16,
+    left: 16
   },
   headerH1: {
     fontSize: 19,
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   headerH2: {
     fontWeight: 'normal',
-    color: 'grey',
+    color: 'grey'
   },
   icon: {
-    color: 'rgba(128, 128, 128, 0.4)',
+    color: 'rgba(128, 128, 128, 0.4)'
   },
   viewLastBox: {
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingTop: 8,
-    paddingBottom: 8,
+    paddingBottom: 8
   },
   checkBox: {
     backgroundColor: '#fff',
@@ -143,16 +143,16 @@ const styles = StyleSheet.create({
     margin: 0,
     padding: 0,
     marginRight: 0,
-    marginLeft: 0,
+    marginLeft: 0
   },
   checkBoxText: {
     fontSize: 15,
     color: '#575757',
-    width: 300,
+    width: 300
   },
   viewContainer: {
     paddingHorizontal: 16,
-    paddingTop: 24,
+    paddingTop: 24
   },
   viewCheckBox: {
     paddingTop: 16,
@@ -161,11 +161,11 @@ const styles = StyleSheet.create({
     borderTopColor: 'rgba(128, 128, 128, 0.4)',
     alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
   saveSettings: {
     height: 150,
     alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
+    justifyContent: 'center'
+  }
+});

@@ -1,48 +1,45 @@
-import React from 'react'
-import { View, StyleSheet } from 'react-native'
-import { Icon } from 'react-native-elements'
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 export const Footer = props =>
   !props.isHiddenHeaderFooter ? (
     <View style={styles.iconsContainer}>
-      <Icon
-        iconStyle={styles.icon}
+      <Ionicons
+        style={styles.icon}
         size={45}
         underlayColor="transparent"
-        type="ionicon"
         name="ios-search-outline"
         onPress={() => {
           props.updatePostsState({
-            isHiddenSearch: !props.isHiddenSearch,
-          })
+            isHiddenSearch: !props.isHiddenSearch
+          });
         }}
       />
-      <Icon
-        iconStyle={styles.icon}
+      <Ionicons
+        style={styles.icon}
         size={45}
         underlayColor="transparent"
-        type="ionicon"
         name="ios-settings-outline"
         onPress={() => {
           props.updatePostsState({
-            modalVisible: !props.modalVisible,
-          })
+            modalVisible: !props.modalVisible
+          });
         }}
       />
-      <Icon
-        iconStyle={styles.icon}
+      <Ionicons
+        style={styles.icon}
         size={45}
         underlayColor="transparent"
-        type="ionicon"
         name="ios-arrow-dropup-outline"
         onPress={props.scrollToTop}
       />
     </View>
-  ) : null
+  ) : null;
 
 const styles = StyleSheet.create({
   icon: {
-    color: 'rgba(128, 128, 128, 0.6)',
+    color: 'rgba(128, 128, 128, 0.6)'
   },
   iconsContainer: {
     justifyContent: 'space-between',
@@ -50,6 +47,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     flexDirection: 'row',
     bottom: 0,
-    width: 170,
-  },
-})
+    width: 170
+  }
+});
